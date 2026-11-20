@@ -65,7 +65,7 @@ export const landing = {
   hero: {
     label: 'Lago Los Molinos · Valle de Calamuchita',
     title: 'El lago desde adentro.',
-    subtitle: 'Salidas en catamarán con gastronomía, música y la mejor vista del valle. Desde el medio del agua.',
+    subtitle: 'Salidas en catamarán desde el corazón del lago, con gastronomía, música y la mejor vista del valle.',
     launch: ph('Primeras salidas: temporada 2026–27'),
   },
 
