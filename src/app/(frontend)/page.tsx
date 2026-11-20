@@ -13,6 +13,7 @@ import { SiteHeader } from '@/components/layout/SiteHeader'
 import { StickyActionBar } from '@/components/layout/StickyActionBar'
 import { ArrowLink, Button } from '@/components/ui/Button'
 import { SectionHeader } from '@/components/ui/SectionHeader'
+import { Motion } from '@/components/motion/Motion'
 import { landing as c, photos } from '@/content/landing'
 
 export const metadata: Metadata = {
@@ -30,13 +31,17 @@ export default function LandingPage() {
         Saltar al contenido
       </a>
       <SiteHeader nav={c.nav} cta={c.cta.primary} />
+      <Motion />
 
       <main id="contenido">
         {/* ── Hero ───────────────────────────────────────────── */}
         <section className="relative flex min-h-[100svh] max-h-[1000px] items-end overflow-hidden bg-verde-profundo text-lino lg:min-h-[88vh]">
-          <Photo slot={photos.hero} className="absolute inset-0" priority showBrief={false} />
-          <div className="absolute inset-0 bg-gradient-to-b from-verde-profundo/60 via-verde-profundo/10 via-30% to-verde-profundo/90" aria-hidden="true" />
-          <div className="container-x relative w-full px-[var(--page-x)] pb-[clamp(2.5rem,8vh,6rem)] pt-32">
+          <Photo slot={photos.hero} className="hero-kenburns absolute inset-0" priority showBrief={false} />
+          {/* Luz dorada de atardecer sobre la foto (paleta del brandbook) */}
+          <div className="hero-gold absolute inset-0" aria-hidden="true" />
+          <div className="hero-sun absolute inset-0" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-b from-verde-profundo/40 via-transparent via-35% to-verde-profundo/90" aria-hidden="true" />
+          <div className="hero-copy container-x relative w-full px-[var(--page-x)] pb-[clamp(2.5rem,8vh,6rem)] pt-32">
             <p className="label text-lino/85">{c.hero.label}</p>
             <h1 className="mt-5 max-w-[12ch] font-display text-[length:var(--text-display-xl)] font-light leading-[0.98] tracking-[-0.01em] text-lino">
               {c.hero.title}
@@ -93,7 +98,7 @@ export default function LandingPage() {
             <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
               {c.experiences.items.map((e) => (
                 <li key={e.slug} className="reveal group flex flex-col">
-                  <Photo slot={photos[e.photo]} className="aspect-[4/5] w-full transition-transform duration-[600ms] group-hover:scale-[1.01]" sizes="(min-width: 768px) 33vw, 100vw" />
+                  <Photo slot={photos[e.photo]} className="card-photo aspect-[4/5] w-full" sizes="(min-width: 768px) 33vw, 100vw" />
                   <span className="mt-6 w-fit rounded-[2px] bg-verde-niebla px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-verde-lago">
                     {e.chip}
                   </span>
@@ -142,7 +147,7 @@ export default function LandingPage() {
         {/* ── El barco ──────────────────────────────────────── */}
         <section id="el-barco" className="section scroll-mt-16 bg-blanco">
           <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center">
-            <Photo slot={photos.barco} className="reveal aspect-[4/3] lg:col-span-7" sizes="(min-width: 1024px) 58vw, 100vw" />
+            <Photo slot={photos.barco} className="reveal reveal-photo aspect-[4/3] lg:col-span-7" sizes="(min-width: 1024px) 58vw, 100vw" />
             <div className="reveal lg:col-span-5">
               <SectionHeader label={c.boat.label} title={c.boat.title} />
               <p className="measure mt-6">{c.boat.text}</p>
@@ -165,7 +170,7 @@ export default function LandingPage() {
         {/* ── El lago + Tres Bahías ─────────────────────────── */}
         <section id="el-lago" className="scroll-mt-16 bg-piedra">
           <div className="grid lg:grid-cols-2">
-            <Photo slot={photos.insight} className="aspect-[4/5] lg:aspect-auto lg:min-h-[640px]" sizes="(min-width: 1024px) 50vw, 100vw" />
+            <Photo slot={photos.insight} className="reveal reveal-photo aspect-[4/5] lg:aspect-auto lg:min-h-[640px]" sizes="(min-width: 1024px) 50vw, 100vw" />
             <div className="section flex flex-col justify-center">
               <SectionHeader label={c.lake.label} title={c.lake.title} className="reveal" />
               <p className="measure reveal mt-6">{c.lake.text}</p>
@@ -208,7 +213,7 @@ export default function LandingPage() {
 
         {/* ── Privados y empresas ───────────────────────────── */}
         <section className="relative overflow-hidden bg-verde-profundo text-lino">
-          <Photo slot={photos.privados} className="absolute inset-0 opacity-60" showBrief={false} />
+          <Photo slot={photos.privados} className="parallax absolute inset-x-0 -inset-y-[10%] opacity-60" showBrief={false} />
           <div className="absolute inset-0 bg-verde-lago/60" aria-hidden="true" />
           <div className="section container-x relative">
             <div className="reveal max-w-xl">
@@ -268,7 +273,7 @@ export default function LandingPage() {
 
         {/* ── Cierre ────────────────────────────────────────── */}
         <section className="relative flex min-h-[70svh] items-end overflow-hidden bg-verde-profundo text-lino">
-          <Photo slot={photos.cierre} className="absolute inset-0" showBrief={false} />
+          <Photo slot={photos.cierre} className="parallax absolute inset-x-0 -inset-y-[10%]" showBrief={false} />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-verde-profundo/90" aria-hidden="true" />
           <div className="container-x relative w-full px-[var(--page-x)] pb-[clamp(3rem,10vh,7rem)]">
             <p className="reveal max-w-[18ch] font-display text-[length:var(--text-display-l)] font-light leading-[1.05]">
