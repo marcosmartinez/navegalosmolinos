@@ -14,25 +14,33 @@
 export type Text = string | { ph: string }
 export const ph = (value: string): Text => ({ ph: value })
 
-/** Espacios de foto. `src` vacío = se muestra el placeholder de marca con la indicación de dirección de arte. */
+/**
+ * Espacios de foto. Cada uno busca su archivo en public/images/ (ver `src`). Si el archivo no existe,
+ * se muestra el placeholder de marca con la indicación de dirección de arte.
+ * hero.jpg: render aéreo del brochure inversor (Figma SOYM, pág. 15). barco.jpg: foto real del astillero (oct-2026).
+ */
 export type PhotoSlot = {
   src?: string
   alt: string
   /** Indicación de dirección de arte (brandbook 07). Se muestra en el placeholder. */
   brief: string
   tone: 'atardecer' | 'lago' | 'sierra' | 'cubierta' | 'obra' | 'detalle'
+  /** Punto focal (object-position CSS), ej. '50% 70%'. */
+  focus?: string
+  /** Versión vertical opcional para celular (< 640px). Si el archivo no existe, se usa `src`. */
+  srcMobile?: string
 }
 
 export const photos = {
-  hero: { alt: 'El Lago Los Molinos desde la proa del catamarán, con las sierras al fondo', brief: 'Paisaje · golden hour · horizonte bajo con proa', tone: 'atardecer' },
-  insight: { alt: 'Vista del lago desde el medio del agua', brief: 'Paisaje · desde el medio del lago, la orilla lejos', tone: 'lago' },
-  goldenHour: { alt: 'Copa contra el agua al atardecer', brief: 'Experiencia · copa contra el sol en cubierta', tone: 'atardecer' },
-  brunch: { alt: 'Mesa servida en cubierta a la mañana', brief: 'Experiencia · mesa de brunch, luz de mañana', tone: 'cubierta' },
-  wine: { alt: 'Copas de vino en cubierta con las sierras de fondo', brief: 'Detalle · copas y sierra, tarde', tone: 'sierra' },
-  privados: { alt: 'Grupo brindando en cubierta', brief: 'Experiencia · grupo brindando de espaldas al lago', tone: 'cubierta' },
-  barco: { alt: 'El catamarán Espíritu del Lago en construcción en el astillero', brief: 'Obra · casco y puente en el astillero (fotos de oct-2026)', tone: 'obra' },
-  tresBahias: { alt: 'Costa de Tres Bahías vista desde el agua', brief: 'Paisaje · costa de Tres Bahías desde el agua', tone: 'sierra' },
-  cierre: { alt: 'Atardecer sobre el Lago Los Molinos', brief: 'Paisaje · sol bajando atrás de las sierras', tone: 'atardecer' },
+  hero: { src: '/images/hero.jpg', srcMobile: '/images/hero-mobile.jpg', alt: 'El catamarán navegando el Lago Los Molinos, con las sierras de Calamuchita al fondo', brief: 'Paisaje · golden hour · horizonte bajo con proa', tone: 'atardecer', focus: '50% 65%' },
+  insight: { src: '/images/lago.jpg', alt: 'Vista del lago desde el medio del agua', brief: 'Paisaje · desde el medio del lago, la orilla lejos', tone: 'lago' },
+  goldenHour: { src: '/images/golden-hour.jpg', alt: 'Copa contra el agua al atardecer', brief: 'Experiencia · copa contra el sol en cubierta', tone: 'atardecer' },
+  brunch: { src: '/images/brunch.jpg', alt: 'Mesa servida en cubierta a la mañana', brief: 'Experiencia · mesa de brunch, luz de mañana', tone: 'cubierta' },
+  wine: { src: '/images/wine-cruise.jpg', alt: 'Copas de vino en cubierta con las sierras de fondo', brief: 'Detalle · copas y sierra, tarde', tone: 'sierra' },
+  privados: { src: '/images/privados.jpg', alt: 'Grupo brindando en cubierta', brief: 'Experiencia · grupo brindando de espaldas al lago', tone: 'cubierta' },
+  barco: { src: '/images/barco.jpg', alt: 'El catamarán Espíritu del Lago en construcción en el astillero', brief: 'Obra · casco y puente en el astillero (fotos de oct-2026)', tone: 'obra' },
+  tresBahias: { src: '/images/tres-bahias.jpg', alt: 'Costa de Tres Bahías vista desde el agua', brief: 'Paisaje · costa de Tres Bahías desde el agua', tone: 'sierra' },
+  cierre: { src: '/images/cierre.jpg', alt: 'Atardecer sobre el Lago Los Molinos', brief: 'Paisaje · sol bajando atrás de las sierras', tone: 'atardecer' },
 } satisfies Record<string, PhotoSlot>
 
 export const landing = {

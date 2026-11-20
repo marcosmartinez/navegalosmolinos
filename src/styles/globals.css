@@ -80,7 +80,7 @@
     color: rgb(255 255 255 / 0.72);
     background: var(--photo-bg);
   }
-  .photo-ph::after {
+  .photo-ph--framed::after {
     content: '';
     position: absolute;
     inset: 1rem;
