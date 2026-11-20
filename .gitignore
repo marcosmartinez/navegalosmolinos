@@ -1,0 +1,20 @@
+node_modules
+.next
+out
+build
+coverage
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# entorno
+.env
+.env*.local
+.env.production
+
+# medios subidos en local
+/media
+
+# sistema
+.DS_Store
+*.log

@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+@layer base {
+  html {
+    background: var(--color-blanco);
+    color: var(--color-grafito);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    font-size: var(--text-body-l);
+    line-height: 1.6;
+  }
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 300; /* Cormorant nunca en Bold (brandbook 05.03) */
+    color: var(--color-verde-lago);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-oro-sierra);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Label: Montserrat Medium en mayúsculas con tracking 16 % (eco del wordmark) */
+  .label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  /* Línea de horizonte: regla Oro de 2 × 48 px (brandbook 06.03) */
+  .horizon-rule {
+    display: block;
+    width: 3rem;
+    height: 2px;
+    background: var(--color-oro-sierra);
+  }
+  .measure {
+    max-width: var(--measure);
+  }
+}
+
+/* ── Landing ─────────────────────────────────────────────── */
+@layer components {
+  /* Dato sin confirmar (placeholder). Se oculta con NEXT_PUBLIC_SHOW_PLACEHOLDERS=false */
+  .ph {
+    text-decoration: underline dashed;
+    text-decoration-color: var(--color-oro-sierra);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    cursor: help;
+  }
+
+  .section {
+    padding-inline: var(--page-x);
+    padding-block: var(--section-y);
+  }
+  .container-x {
+    margin-inline: auto;
+    max-width: 100rem;
+  }
+
+  /* Placeholder de foto con dirección de arte (brandbook 07: sin stock) */
+  .photo-ph {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+    color: rgb(255 255 255 / 0.72);
+    background: var(--photo-bg);
+  }
+  .photo-ph::after {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    pointer-events: none;
+  }
+  .photo-ph--atardecer { --photo-bg: linear-gradient(180deg, #e6cfa9 0%, #cfa368 34%, #7a6a52 58%, #2f5250 78%, #1f3937 100%); }
+  .photo-ph--lago { --photo-bg: linear-gradient(180deg, #dce5e2 0%, #a9bfbb 42%, #7a9a96 60%, #2f5250 100%); }
+  .photo-ph--sierra { --photo-bg: linear-gradient(180deg, #efefea 0%, #c9cfc6 38%, #7a9a96 62%, #2f5250 100%); }
+  .photo-ph--cubierta { --photo-bg: linear-gradient(160deg, #e6cfa9 0%, #b8a07a 40%, #5d6b5f 72%, #2f5250 100%); }
+  .photo-ph--obra { --photo-bg: linear-gradient(170deg, #d8d8d3 0%, #a6a6a0 45%, #6b7270 75%, #404040 100%); }
+  .photo-ph--detalle { --photo-bg: linear-gradient(180deg, #efefea 0%, #dce5e2 50%, #7a9a96 100%); }
+
+  /* Entrada suave al hacer scroll (sin JS; progresivo) */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none !important; }
+}
